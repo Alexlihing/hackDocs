@@ -3,10 +3,6 @@ import { AppBar, Toolbar, CssBaseline, Typography, Link } from "@material-ui/cor
 //import { Link } from "";
 import {useStyles } from "./styles";
 
-
-// Define your styles
-
-
 const NavBar = () => {
   const classes = useStyles();
 
