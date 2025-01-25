@@ -1,6 +1,6 @@
-import React from "react";
-import { AppBar, Toolbar, CssBaseline, Typography, Link } from "@material-ui/core";
-//import { Link } from "";
+//import React from "react";
+import { AppBar, Toolbar, CssBaseline, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import {useStyles } from "./styles";
 
 const NavBar = () => {
