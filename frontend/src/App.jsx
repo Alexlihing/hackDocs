@@ -2,7 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import NavBar from "./component/NavBar/NavBar";
 import HomePage from "./component/HomePage/HomePage";
 import LoginPage from "./component/LogInPage/LoginPage";
-import "index.css";
+import "./index.css";
+import ChatBot from "./component/ChatBot/ChatBot";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/profile" element={<LoginPage />} />
+        <Route path="/chatbot" element={<ChatBot />} />
       </Routes>
     </>
   );
