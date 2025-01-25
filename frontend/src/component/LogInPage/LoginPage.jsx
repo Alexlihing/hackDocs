@@ -1,16 +1,9 @@
-//import { useNavigate } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { useStyles } from "./styles";
-import {
-  Avatar,
-  CssBaseline,
-  Paper,
-  Typography,
-  Grid,
-} from "@material-ui/core";
+import { Avatar, CssBaseline, Paper, Typography, Grid } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
-import jwt_decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode"; // Use named import
 
 import NavBar from "../NavBar/NavBar";
 
@@ -20,22 +13,22 @@ const LoginPage = () => {
 
     const handleClick = () => {
         //navigate("/auth");
-    }
+    };
 
     return (
         <div>
             <NavBar />
-            <div className={classes.component_wrapper}> 
+            <div className={classes.component_wrapper}>
                 <LockOutlinedIcon />
                 <Button
-                className={classes.btn}
-                onClick={handleClick}
+                    className={classes.btn}
+                    onClick={handleClick}
                 >
                     Please sign in!
                 </Button>
-        </div>
+            </div>
         </div>
     );
-}
+};
 
 export default LoginPage;
