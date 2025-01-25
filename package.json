@@ -1,5 +1,10 @@
 {
   "dependencies": {
     "@material-ui/core": "^4.12.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1",
+    "tailwindcss": "^4.0.0"
   }
 }
