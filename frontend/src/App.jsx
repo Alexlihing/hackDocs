@@ -10,6 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/profile" element={<LoginPage />} />
+        <Route path="/chatbot" element={<ChatBot />} />
       </Routes>
     </>
   );
