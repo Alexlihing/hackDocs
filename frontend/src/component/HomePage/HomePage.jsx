@@ -1,5 +1,6 @@
 import React from 'react';
 import { Home, MessageCircle, Search } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const WomensHealthApp = () => {
   return (
@@ -11,31 +12,34 @@ const WomensHealthApp = () => {
         </div>
         <nav>
           <ul className="flex space-x-4">
-            <li><a href="#" className="hover:text-green-200">Home</a></li>
-            <li><a href="#" className="hover:text-green-200">Medications</a></li>
-            <li><a href="#" className="hover:text-green-200">Chatbot</a></li>
-            <li><a href="#" className="hover:text-green-200">Doctor Search</a></li>
+            <li><Link to="/" className="hover:text-green-200">Home</Link></li>
           </ul>
         </nav>
       </header>
 
       <main className="container mx-auto p-6">
         <section className="grid md:grid-cols-3 gap-6">
-          <div className="bg-gray-900 p-6 rounded-lg border border-green-700">
-            <Home color="green" size={48} className="mb-4" />
-            <h2 className="text-xl font-semibold mb-3 text-green-400">Medication Tracker</h2>
+          <div className="bg-gray-900 p-6 rounded-lg border border-green-700 hover:shadow-lg transition">
+            <Link to="/medications" className="block">
+              <Home color="green" size={48} className="mb-4" />
+              <h2 className="text-xl font-semibold mb-3 text-green-400">Medication Tracker</h2>
+            </Link>
             <p className="text-green-200">Easily input and track your current medications</p>
           </div>
 
-          <div className="bg-gray-900 p-6 rounded-lg border border-green-700">
-            <MessageCircle color="green" size={48} className="mb-4" />
-            <h2 className="text-xl font-semibold mb-3 text-green-400">Health Chatbot</h2>
+          <div className="bg-gray-900 p-6 rounded-lg border border-green-700 hover:shadow-lg transition">
+            <Link to="/chatbot" className="block">
+              <MessageCircle color="green" size={48} className="mb-4" />
+              <h2 className="text-xl font-semibold mb-3 text-green-400">Health Chatbot</h2>
+            </Link>
             <p className="text-green-200">Get instant health guidance and answers</p>
           </div>
 
-          <div className="bg-gray-900 p-6 rounded-lg border border-green-700">
-            <Search color="green" size={48} className="mb-4" />
-            <h2 className="text-xl font-semibold mb-3 text-green-400">Doctor Finder</h2>
+          <div className="bg-gray-900 p-6 rounded-lg border border-green-700 hover:shadow-lg transition">
+            <Link to="/doctor-search" className="block">
+              <Search color="green" size={48} className="mb-4" />
+              <h2 className="text-xl font-semibold mb-3 text-green-400">Doctor Finder</h2>
+            </Link>
             <p className="text-green-200">Search and connect with specialized healthcare providers</p>
           </div>
         </section>
