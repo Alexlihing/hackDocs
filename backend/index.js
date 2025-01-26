@@ -11,7 +11,7 @@ const mongoose = require("mongoose");
 //or add other database connection logic
 
 mongoose
-  .connect("mongodb://localhost/vidly")
+  .connect("mongodb+srv://alexli9132:Test@innovateher.2k59h.mongodb.net/")
   .then(() => console.log("Connected to MongoDB..."))
   .catch((err) => console.error("Could not connect to MongoDB..."));
 
