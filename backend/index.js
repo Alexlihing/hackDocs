@@ -5,6 +5,7 @@ const path = require("path");
 const users = require("./routes/users");
 const maps = require("./routes/maps");
 const auth = require("../backend/routes/auth");
+const openAI = require("./routes/openAI");
 
 const mongoose = require("mongoose");
 
@@ -28,6 +29,7 @@ app.get("/", (req, res) => {
 app.use("/api/users", users);
 app.use("/api/maps", maps);
 app.use("/api/auth/", auth); //http://localhost:3011/api/auth/user 
+app.use("/api/chatbot", openAI);
 
 app.listen(3011, () => {
   console.log("listening on port 3011");

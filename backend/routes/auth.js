@@ -17,3 +17,5 @@ router.post("/user", async (req, res) => {
     res.status(400).send("user not found");
   }
 });
+
+module.exports = router;

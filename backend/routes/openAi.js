@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
     try {
       const response = await openai.createCompletion({
         model: "gpt-4",
-        prompt: text,
+        prompt: `give health advice to the best of your ability on the following ${text}`, 
         max_tokens: 150,
       });
 
