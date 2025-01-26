@@ -3,8 +3,8 @@ import axios from "axios";
 import "./FindDoctor.css"; // Ensure this file exists in the correct directory
 
 const FindDoctor = () => {
-  const [problem, setProblem] = useState("");
-  const [zipCode, setZipCode] = useState("");
+  const [query, setQuery] = useState(""); // Updated from "problem" to "query"
+  const [zip, setZip] = useState(""); // Updated from "zipCode" to "zip"
   const [response, setResponse] = useState("");
   const [error, setError] = useState("");
 
@@ -13,16 +13,14 @@ const FindDoctor = () => {
     setError(""); // Clear previous errors
     try {
       const res = await axios.post("http://localhost:3011/api/find-doctor", {
-        problem,
-        zipCode,
+        query, // Use "query" here
+        zip, // Use "zip" here
       });
       const results = res.data.results || [];
       const formattedResults = results
         .map(
           (doctor) =>
-            `Name: ${doctor.name}\nAddress: ${doctor.address}\nRating: ${
-              doctor.rating || "N/A"
-            }\nTotal Reviews: ${doctor.totalRatings || 0}\n`
+            `Name: ${doctor.name}\nAddress: ${doctor.address}\nShort Description: ${doctor.shortDescription}\n`
         )
         .join("\n\n"); // Format results into readable text
       setResponse(formattedResults);
@@ -42,15 +40,15 @@ const FindDoctor = () => {
         <form onSubmit={handleSubmit} className="find-doctor-form">
           <input
             type="text"
-            value={problem}
-            onChange={(e) => setProblem(e.target.value)}
+            value={query} // Updated to use "query"
+            onChange={(e) => setQuery(e.target.value)} // Updated to set "query"
             placeholder="Describe your problem..."
             className="find-doctor-input"
           />
           <input
             type="text"
-            value={zipCode}
-            onChange={(e) => setZipCode(e.target.value)}
+            value={zip} // Updated to use "zip"
+            onChange={(e) => setZip(e.target.value)} // Updated to set "zip"
             placeholder="Enter your zip code..."
             className="find-doctor-input"
           />
