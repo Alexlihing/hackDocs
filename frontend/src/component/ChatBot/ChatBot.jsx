@@ -1,39 +1,51 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
+import "./ChatBot.css";
 
 const ChatBot = () => {
-    const [input, setInput] = useState('');
-    const [response, setResponse] = useState('');
+  const [input, setInput] = useState("");
+  const [response, setResponse] = useState("");
+  const [error, setError] = useState("");
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const res = await axios.post('http://localhost:3011/api/chatbot', { text: input });
-            setResponse(res.data.response);
-        } catch (error) {
-            console.error('Error sending message to chatbot:', error);
-            setResponse('Error communicating with chatbot.');
-        }
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(""); // Clear previous errors
+    try {
+      const res = await axios.post("http://localhost:3011/api/chatbot", { text: input });
+      setResponse(res.data.response); // Expecting response from backend
+    } catch (err) {
+      console.error("Error communicating with chatbot:", err.response?.data || err.message);
+      setError(err.response?.data?.error || "Error communicating with chatbot.");
+    }
+  };
 
-    return (
-        <div>
-            <h1>ChatBot</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    placeholder="Type your message"
-                />
-                <button type="submit">Send</button>
-            </form>
-            <div>
-                <h2>Response:</h2>
-                <p>{response}</p>
-            </div>
+  return (
+    <div className="chatbot-container">
+      <div className="chatbot-header">
+        <h1>Chat with Our Bot</h1>
+        <p>Get instant assistance from our AI-powered chatbot.</p>
+      </div>
+      <div className="chatbot-body">
+        <form onSubmit={handleSubmit} className="chatbot-form">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Type your message..."
+            className="chatbot-input"
+          />
+          <button type="submit" className="chatbot-button">Send</button>
+        </form>
+        <div className="chatbot-response">
+          <h2>Response:</h2>
+          <div className="response-box">
+            {response ? <p>{response}</p> : <p>No response yet.</p>}
+          </div>
+          {error && <p className="chatbot-error">{error}</p>}
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default ChatBot;

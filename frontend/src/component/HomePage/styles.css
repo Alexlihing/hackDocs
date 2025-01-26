@@ -1,102 +1,125 @@
-/* styles.css */
-body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    color: #ffffff;
-    background-color: #ffccd5;
-  }
-  
-  .homepage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .header {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    padding: 20px;
-    border-bottom: 1px solid #ff6f91;
-  }
-  
-  .login-button {
-    color: #ff6f91;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    background: transparent;
-    border: 2px solid #ff6f91;
-    padding: 8px 16px;
-    border-radius: 8px;
-    transition: all 0.3s;
-  }
-  
-  .login-button:hover {
-    background-color: #ff6f91;
-    color: #ffffff;
-  }
-  
-  .main-content {
-    text-align: center;
-    margin-top: 50px;
-  }
-  
-  .welcome {
-    font-size: 36px;
-    margin-bottom: 30px;
-    color: #ff6f91;
-  }
-  
-  .features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    width: 100%;
-    max-width: 1000px;
-  }
-  
-  .feature {
-    background: #ffe4e9;
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #ff6f91;
-    box-shadow: 0 4px 8px rgba(255, 111, 145, 0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  
-  .feature:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(255, 111, 145, 0.4);
-  }
-  
-  .feature h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #ff6f91;
-  }
-  
-  .feature p {
-    font-size: 16px;
-    color: #ffffff;
-  }
-  
-  .feature-link {
-    display: inline-block;
-    margin-top: 10px;
-    color: #ff6f91;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: bold;
-    border: 2px solid #ff6f91;
-    padding: 8px 12px;
-    border-radius: 8px;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .feature-link:hover {
-    background-color: #ff6f91;
-    color: #ffffff;
-  }
-  
+/* Reset basic margins and paddings */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background: black;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Homepage container */
+.homepage-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures content spans the full viewport */
+}
+
+/* Header styles */
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+  padding-right: 50px; /* Adjusted to shift button left */
+  border-bottom: 1px solid #32cd32;
+  background-color: rgba(0, 0, 0, 0.8); /* Slightly transparent black */
+}
+
+/* Login button */
+.login-button {
+  margin-right: 20px; /* Further adjustment to shift the button */
+  color: #32cd32;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 2px solid #32cd32;
+  background: transparent;
+  transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.login-button:hover {
+  background-color: #32cd32;
+  color: #000000; /* Black text for contrast */
+  transform: scale(1.05);
+}
+
+/* Main content styles */
+.main-content {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.welcome {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #32cd32;
+  text-shadow: 2px 2px 10px rgba(50, 205, 50, 0.5);
+}
+
+/* Features section */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #0a0a0a;
+  border-radius: 12px;
+  border: 1px solid #32cd32;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(50, 205, 50, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(50, 205, 50, 0.4), 0 4px 12px rgba(0, 0, 0, 0.8);
+}
+
+.feature h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #32cd32;
+  text-shadow: 1px 1px 8px rgba(50, 205, 50, 0.5);
+}
+
+.feature p {
+  font-size: 16px;
+  color: #a1fca1;
+  text-align: center;
+}
+
+.feature-link {
+  margin-top: auto;
+  color: #32cd32;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 2px solid #32cd32;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.feature-link:hover {
+  background-color: #32cd32;
+  color: #000000;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(50, 205, 50, 0.5);
+}

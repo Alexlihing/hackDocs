@@ -1,7 +1,7 @@
-import { Routes, Route } from 'react-router-dom'
-import NavBar from './component/NavBar/NavBar'
-import { HomePage } from './component/HomePage/HomePage'
-import LoginPage from './component/LogInPage/LoginPage'
+import { Routes, Route } from "react-router-dom";
+import NavBar from "./component/NavBar/NavBar"; // Navigation bar
+import { HomePage } from "./component/HomePage/HomePage";
+import LoginPage from "./component/LogInPage/LoginPage";
 import ChatBot from "./component/ChatBot/ChatBot";
 
 function App() {

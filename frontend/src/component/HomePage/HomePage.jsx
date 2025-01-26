@@ -9,7 +9,8 @@ export const HomePage = () => {
         <Link to="/profile" className="login-button">Login</Link>
       </header>
       <main className="main-content">
-        <h1>Welcome to Women's Health App</h1>
+        <h1 id="header">HackDocs</h1>
+        <h2>Your go-to platform for immediate health care</h2>
         <div className="features">
           <div className="feature">
             <h2>AI Health Chatbot</h2>
