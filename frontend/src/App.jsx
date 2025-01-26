@@ -7,10 +7,9 @@ import ChatBot from './component/ChatBot/ChatBot'
 function App() {
   return (
     <>
-      <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/profile" element={<LoginPage />} />
+        <Route path="/profile" element={<LoginPage />} /> 
         <Route path="/chatbot" element={<ChatBot />} />
       </Routes>
     </>
