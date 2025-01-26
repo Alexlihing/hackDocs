@@ -55,6 +55,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/maps", mapsRoutes);
 app.use("/api/chatbot", openAiRoutes);
+app.use("/api", openAiRoutes);
 
 // Start Server
 app.listen(3011, () => {
