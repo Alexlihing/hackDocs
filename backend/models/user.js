@@ -12,9 +12,13 @@ const userSchema = new mongoose.Schema({
   },
   medicines: {
     type: Array,
+    default: [],
+  },
+  googleId: {
+    type: String,
   },
 });
 
 const User = mongoose.model("User", userSchema);
 
-module.exports = User;
+exports.User = User;

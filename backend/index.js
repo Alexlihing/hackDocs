@@ -1,35 +1,62 @@
 const express = require("express");
-const app = express();
+
+const passport = require("passport");
+require("./middlewear/passport.js");
+const session = require("express-session");
 const cors = require("cors");
-const path = require("path");
-const users = require("./routes/users");
-const maps = require("./routes/maps");
-const auth = require("../backend/routes/auth");
-const openAI = require("./routes/openAI");
-
 const mongoose = require("mongoose");
-require("dotenv").config(); // Load environment variables from .env
+const dotenv = require("dotenv");
 
-// MongoDB connection using .env
-const mongoURI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@innovateher.2k59h.mongodb.net/`;
+require("dotenv").config();
 
-mongoose
-  .connect(mongoURI)
-  .then(() => console.log("Connected to MongoDB..."))
-  .catch((err) => console.error("Could not connect to MongoDB...", err));
+const app = express();
 
-app.use(cors());
+// CORS Configuration
+app.use(
+  cors({
+    origin: ["http://localhost:5173"], // Frontend URL
+    credentials: true, // Allow cookies (important for sessions)
+  })
+);
+
+// Middleware for parsing JSON requests
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
+// Session Configuration
+app.use(
+  session({
+    secret: "fu",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }, // Set to `true` if using HTTPS
+  })
+);
 
-app.use("/api/users", users);
-app.use("/api/maps", maps);
-app.use("/api/auth/", auth); // http://localhost:3011/api/auth/user
-app.use("/api/chatbot", openAI);
+// Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
+// Connect to MongoDB (replace with your own database URI)
+mongoose
+  .connect("mongodb+srv://alexli9132:Test@innovateher.2k59h.mongodb.net/", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.log(err));
+
+// Import Routes
+const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/users");
+const mapsRoutes = require("./routes/maps");
+const openAiRoutes = require("./routes/openAI.js");
+
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/maps", mapsRoutes);
+app.use("/api/chatbot", openAiRoutes);
+
+// Start Server
 app.listen(3011, () => {
-  console.log("listening on port 3011");
+  console.log("Server running on http://localhost:3011");
 });

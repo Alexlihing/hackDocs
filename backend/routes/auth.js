@@ -1,21 +1,27 @@
 const express = require("express");
 const router = express.Router();
-const { User } = require("../models/user");
+const passport = require("passport");
 
-router.post("/user", async (req, res) => {
-  //input validation with joi.
+// Route to start Google login
+router.get(
+  "/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
 
-  const userDetails = req.body.userDetails;
-
-  const userEmail = userDetails.email;
-
-  const user = await User.findOne({ email: userEmail });
-
-  if (user) {
-    res.status(200).send(user);
-  } else {
-    res.status(400).send("user not found");
+// Google OAuth callback route
+router.get(
+  "/google/callback",
+  passport.authenticate("google", { failureRedirect: "/login", session: true }),
+  (req, res) => {
+    // Successful authentication, redirect to frontend.
+    res.redirect(`http://localhost:5173/Home`);
   }
+);
+
+// Error handling middleware
+router.use((err, req, res, next) => {
+  console.error("OAuth2 Error:", err); // Log the full error
+  res.status(500).send({ message: "OAuth authentication failed", error: err });
 });
 
 module.exports = router;
