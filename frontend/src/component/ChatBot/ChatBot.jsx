@@ -11,10 +11,12 @@ const ChatBot = () => {
     e.preventDefault();
     setError(""); // Clear previous errors
     try {
+      console.log("Sending input to backend:", input); // Log input
       const res = await axios.post("http://localhost:3011/api/chatbot", { text: input });
+      console.log("Response received from backend:", res.data.response); // Log response
       setResponse(res.data.response); // Expecting response from backend
     } catch (err) {
-      console.error("Error communicating with chatbot:", err.response?.data || err.message);
+      console.error("Error response from backend:", err.response?.data || err.message);
       setError(err.response?.data?.error || "Error communicating with chatbot.");
     }
   };
