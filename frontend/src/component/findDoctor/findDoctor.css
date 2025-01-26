@@ -1,0 +1,96 @@
+/* General body styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(180deg, #f5f5f5, #e0f7fa); /* Light gradient background */
+    color: #333;
+  }
+  
+  /* Container for the Find Doctor component */
+  .find-doctor-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Header section */
+  .find-doctor-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .find-doctor-header h1 {
+    font-size: 2.5rem;
+    color: #00796b; /* Deep teal */
+  }
+  
+  .find-doctor-header p {
+    font-size: 1.2rem;
+    color: #004d40; /* Dark teal */
+  }
+  
+  /* Form styling */
+  .find-doctor-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .find-doctor-input {
+    padding: 10px 15px;
+    border: 1px solid #00796b; /* Border matching the theme */
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .find-doctor-input:focus {
+    border-color: #004d40; /* Darker teal focus */
+  }
+  
+  .find-doctor-button {
+    padding: 10px 20px;
+    background: #00796b; /* Teal button */
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .find-doctor-button:hover {
+    background-color: #004d40; /* Darker teal */
+    transform: scale(1.05);
+  }
+  
+  /* Results section */
+  .find-doctor-response {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .find-doctor-response h2 {
+    font-size: 1.5rem;
+    color: #004d40;
+  }
+  
+  .response-box {
+    min-height: 120px; /* Larger textbox for multiple results */
+    padding: 15px;
+    background-color: #ffffff; /* White background for results */
+    border-radius: 8px;
+    border: 1px solid #00796b; /* Matching teal border */
+    color: #333; /* Neutral text color */
+    font-size: 1rem;
+    overflow-y: auto; /* Enable scrolling for large content */
+    white-space: pre-wrap; /* Preserve whitespace and line breaks */
+  }
+  
