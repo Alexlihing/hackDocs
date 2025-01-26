@@ -2,7 +2,7 @@ import React from 'react';
 import { Home, MessageCircle, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const WomensHealthApp = () => {
+export const HomePage = () => {
   return (
     <div className="min-h-screen bg-black text-green-400">
       <header className="flex justify-between items-center p-4 border-b border-green-700">
@@ -59,5 +59,3 @@ const WomensHealthApp = () => {
     </div>
   );
 };
-
-export default WomensHealthApp;
