@@ -3,7 +3,7 @@ import { useStyles } from "./styles";
 import { Avatar, CssBaseline, Paper, Typography, Grid } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import NavBar from "../NavBar/NavBar";
 
 const LoginPage = () => {

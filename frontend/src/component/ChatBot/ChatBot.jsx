@@ -1,40 +1,36 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const ChatBot = () => {
-    const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
+    const [response, setResponse] = useState('');
 
-    const handleSend = () => {
-        if (input.trim()) {
-            setMessages([...messages, { text: input, sender: 'user' }]);
-            setInput('');
-            // Simulate bot response
-            setTimeout(() => {
-                setMessages(prevMessages => [
-                    ...prevMessages,
-                    { text: 'This is a bot response', sender: 'bot' }
-                ]);
-            }, 1000);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await axios.post('http://localhost:3011/api/chatbot', { text: input });
+            setResponse(res.data.response);
+        } catch (error) {
+            console.error('Error sending message to chatbot:', error);
+            setResponse('Error communicating with chatbot.');
         }
     };
 
     return (
-        <div className="chatbot">
-            <div className="chatbot-messages">
-                {messages.map((message, index) => (
-                    <div key={index} className={`message ${message.sender}`}>
-                        {message.text}
-                    </div>
-                ))}
-            </div>
-            <div className="chatbot-input">
+        <div>
+            <h1>ChatBot</h1>
+            <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                    placeholder="Type your message"
                 />
-                <button onClick={handleSend}>Send</button>
+                <button type="submit">Send</button>
+            </form>
+            <div>
+                <h2>Response:</h2>
+                <p>{response}</p>
             </div>
         </div>
     );
