@@ -1,10 +1,12 @@
 /* Reset basic margins and paddings */
+/* Reset basic margins and paddings */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
-  background: black;
+  background: linear-gradient(135deg, #add8e6, #1e3a8a) !important;
+  color: #fff; /* White text for readability */
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
@@ -15,7 +17,9 @@ html, body {
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Ensures content spans the full viewport */
+  background: black; /* Reinforce the black background here */
 }
+
 
 /* Header styles */
 .header {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./MedicineLogger.css";
 
 const MedicineLogger = () => {
   const [userMedicines, setUserMedicines] = useState([]);
@@ -6,7 +7,6 @@ const MedicineLogger = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    // Fetch user profile and medicines
     const fetchUserMedicines = async () => {
       try {
         const response = await fetch(
@@ -22,7 +22,6 @@ const MedicineLogger = () => {
 
         const userData = await response.json();
 
-        // If user has medicines, fetch their details
         if (userData.medicines && userData.medicines.length > 0) {
           const medicineDetailsPromises = userData.medicines.map(
             async (medicineName) => {
@@ -46,7 +45,6 @@ const MedicineLogger = () => {
 
   const handleSearch = async () => {
     try {
-      // Search FDA drug database
       const response = await fetch(
         `https://api.fda.gov/drug/label.json?search=openfda.generic_name:"${searchTerm}"&limit=5`
       );
@@ -72,18 +70,6 @@ const MedicineLogger = () => {
         }
       );
 
-      // Log the full response for debugging
-      const responseBody = await response.text();
-      console.log("Response status:", response.status);
-      console.log("Response body:", responseBody);
-
-      if (!response.ok) {
-        throw new Error(
-          `Failed to add medicine. Status: ${response.status}, Body: ${responseBody}`
-        );
-      }
-
-      // Optimistically update frontend state
       const drugResponse = await fetch(
         `https://api.fda.gov/drug/label.json?search=openfda.generic_name:"${medicineName}"&limit=1`
       );
@@ -98,40 +84,45 @@ const MedicineLogger = () => {
   };
 
   return (
-    <div>
-      <h2>My Medicines</h2>
+    <div className="medicine-logger">
+      <h2 className="medicine-header">My Medicines</h2>
 
-      {/* Current User Medicines */}
-      {userMedicines.map((medicine, index) => (
-        <div key={index}>
-          <h3>{medicine.openfda?.generic_name?.[0] || "Unknown Medicine"}</h3>
-          <p>{medicine.purpose?.[0] || "No description available"}</p>
-        </div>
-      ))}
+      <div className="medicine-list">
+        {userMedicines.map((medicine, index) => (
+          <div key={index} className="medicine-card">
+            <h3>{medicine.openfda?.generic_name?.[0] || "Unknown Medicine"}</h3>
+            <p>{medicine.purpose?.[0] || "No description available"}</p>
+          </div>
+        ))}
+      </div>
 
-      {/* Medicine Search */}
-      <div>
+      <div className="search-section">
         <input
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search for a medicine"
+          className="search-input"
         />
-        <button onClick={handleSearch}>Search</button>
+        <button onClick={handleSearch} className="search-button">
+          Search
+        </button>
       </div>
 
-      {/* Search Results */}
-      {searchResults.map((result, index) => (
-        <div key={index}>
-          <h3>{result.openfda?.generic_name?.[0] || "Unknown Medicine"}</h3>
-          <p>{result.purpose?.[0] || "No description available"}</p>
-          <button
-            onClick={() => addMedicine(result.openfda?.generic_name?.[0])}
-          >
-            Add Medicine
-          </button>
-        </div>
-      ))}
+      <div className="search-results">
+        {searchResults.map((result, index) => (
+          <div key={index} className="medicine-card">
+            <h3>{result.openfda?.generic_name?.[0] || "Unknown Medicine"}</h3>
+            <p>{result.purpose?.[0] || "No description available"}</p>
+            <button
+              onClick={() => addMedicine(result.openfda?.generic_name?.[0])}
+              className="add-button"
+            >
+              Add Medicine
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

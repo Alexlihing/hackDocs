@@ -5,9 +5,9 @@ import './styles.css';
 export const HomePage = () => {
   return (
     <div className="homepage">
-      <header className="header">
-        <Link to="/profile" className="login-button">Login</Link>
-      </header>
+<   header className="header">
+  <a href="mailto:alexli@purdue.edu" className="login-button">Contact Us</a>
+    </header>
       <main className="main-content">
         <h1 id="header">HackDocs</h1>
         <h2>Your go-to platform for immediate health care</h2>
